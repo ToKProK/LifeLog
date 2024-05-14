@@ -34,9 +34,9 @@ namespace LifeLog
                 {
                     string command = "CREATE TABLE \"Категория_задачи\" (\"id_class\" INTEGER,\"Название\" TEXT,PRIMARY KEY(\"id_class\" AUTOINCREMENT)); " +
                         "CREATE TABLE \"Стадия_задачи\" (\"id_type\" INTEGER, \"Название\" TEXT,PRIMARY KEY(\"id_type\" AUTOINCREMENT)); " +
-                        "CREATE TABLE \"Задачи\" (\"id\" INTEGER NOT NULL, \"Название\" TEXT NOT NULL, \"Содержание\" TEXT, \"Дата_начала\" TEXT NOT NULL, \"Дата_конца\" TEXT NOT NULL, \"Завершено\" INTEGER, \"Комментарий\" TEXT, \"id_type\" INTEGER, \"id_class\" INTEGER, PRIMARY KEY(\"id\" AUTOINCREMENT), FOREIGN KEY(\"id_type\") REFERENCES \"Тип_задачи\"(\"id_type\"), FOREIGN KEY(\"id_class\") REFERENCES \"Категория_задачи\"(\"id_class\")) " +
+                        "CREATE TABLE \"Задачи\" (\"id\" INTEGER NOT NULL, \"Название\" TEXT NOT NULL, \"Содержание\" TEXT, \"Дата_начала\" TEXT NOT NULL, \"Дата_конца\" TEXT NOT NULL, \"Завершено\" INTEGER, \"Комментарий\" TEXT, \"id_type\" INTEGER, \"id_class\" INTEGER, \"day\" TEXT, PRIMARY KEY(\"id\" AUTOINCREMENT), FOREIGN KEY(\"id_type\") REFERENCES \"Тип_задачи\"(\"id_type\"), FOREIGN KEY(\"id_class\") REFERENCES \"Категория_задачи\"(\"id_class\")); " +
                         "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('1', 'Невыполненные'); " +
-                        "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('2', 'Выполненные '); " +
+                        "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('2', 'Выполненные'); " +
                         "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('3', 'В процессе выполнения'); " +
                         "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('4', 'Планируемые'); " +
                         "INSERT INTO \"Категория_задачи\" (\"id_class\", \"Название\") VALUES ('1', 'Ежедневная');" +
@@ -99,10 +99,12 @@ namespace LifeLog
         {
             //try
             //{
+
             using (SQLiteConnection conect = new SQLiteConnection(db_info))
             {
-                string command = "INSERT INTO \"Задачи\" (\"Название\", \"Содержание\", \"Дата_начала\", \"Дата_конца\", \"Завершено\", \"Комментарий\", \"id_type\", \"id_class\") " +
-                                 $"VALUES ('{name}', '{content}', '{data_start}', '{data_end}', '0', '{comment}', '1', '{Vibor_class.task_type_id}');";//type, class (тип сразу ставить не успел, класс ставиться в зависимости от выбранной вкладки вначале)
+                DateTime day = DateTime.Now.Date;
+                string command = "INSERT INTO \"Задачи\" (\"Название\", \"Содержание\", \"Дата_начала\", \"Дата_конца\", \"Завершено\", \"Комментарий\", \"id_type\", \"id_class\", \"day\") " +
+                                 $"VALUES ('{name}', '{content}', '{data_start}', '{data_end}', '0', '{comment}', '4', '{Vibor_class.task_type_id}', '{day}');";//type, class (тип сразу ставить не успел, класс ставиться в зависимости от выбранной вкладки вначале)
                 using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                 {
                     conect.Open();
@@ -205,6 +207,30 @@ namespace LifeLog
                 }
             }
         }
+
+        public static void DayUpdate()//Обновляет актуальность базы данных на сегодняшний день для ежедневных заданий.
+        {
+            DateTime day = DateTime.Now.Date;
+            DataTable Data = GetData_EveryDayTasks();
+            foreach (DataRow row in Data.Rows)
+            {
+                int id = int.Parse(row["id"].ToString());
+                string db_day = row["day"].ToString();
+                DateTime db_day_datetime = DateTime.Parse(db_day);
+                if (day != db_day_datetime) 
+                {
+                    using (SQLiteConnection conect = new SQLiteConnection(db_info))
+                    {
+                        string command = $"UPDATE Задачи SET day = \'{db_day_datetime}\' " +
+                                         $"WHERE id = {id}";
+                        using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                        {
+                            conect.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-    

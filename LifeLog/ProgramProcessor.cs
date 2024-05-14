@@ -20,7 +20,6 @@ namespace LifeLog
                 int id = int.Parse(row["id"].ToString());
                 DateTime date_start = DateTime.Parse(row["Дата_начала"].ToString());
                 DateTime date_end = DateTime.Parse(row["Дата_конца"].ToString());
-                DateTime day = DateTime.Parse(row["Дата_конца"].ToString());
                 DateTime date_now = DateTime.Now;
                 int complete = int.Parse(row["Завершено"].ToString());
                 if (complete == 1)// Выполнено

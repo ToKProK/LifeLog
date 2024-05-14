@@ -74,8 +74,8 @@ namespace LifeLog
                         break;
                     }
             }
-            ProgramProcessor.Task_Handler(Data);
-            ColorTable();
+            ProgramProcessor.Task_Handler(Data);//Устанавливаем правильный статус заданиям
+            ProgramProcessor.Coloring(dataGridView_Tasks);//Устанавливаем Цвета для заданий
         }
 
 
@@ -93,7 +93,7 @@ namespace LifeLog
             return Data;
         }
 
-        private void dataGridView_Tasks_DoubleClick(object sender, EventArgs e)// Событие двойного нажатия по одной из задач, открывается новое окно.
+        private void dataGridView_Tasks_DoubleClick(object sender, EventArgs e)// Событие двойного нажатия по одной из задач, открывается новое окно, для изменеия данных задачи.
         {
             if (dataGridView_Tasks.CurrentCellAddress.X != 5) //Данное условие позволяет обходить вход в редактирование при двойном нажатие на галочку.
             {
@@ -121,18 +121,6 @@ namespace LifeLog
                 ConnectionDB.Complete_Task(id, Complete);
                 Load_Tasks();
             }));
-        }
-
-        private void ColorTable()
-        {
-            //foreach (DataGridViewRow row in dataGridView_Tasks.Rows)
-            //{
-            //    //if (Convert.ToInt32(row.Cells[7].Value) < Convert.ToInt32(row.Cells[10].Value))
-
-            //    row.DefaultCellStyle.BackColor = Color.Red;
-            //}
-            ProgramProcessor.Coloring(dataGridView_Tasks);
-               
         }
     }
 }
