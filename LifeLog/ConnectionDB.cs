@@ -14,8 +14,8 @@ namespace LifeLog
     internal class ConnectionDB
     {
         static string db_info = @"Data Source=lifelog.db;Pooling=true;;Version=3";
-        //Проверяет наличие базы данных, если нет создаёт пустую.
-        public static void ConnectionSQLlite()
+        
+        public static void CheckDB() //Проверяет наличие базы данных, если нет создаёт пустую.
         {
             if (!File.Exists("lifelog.db"))
             {
@@ -41,8 +41,8 @@ namespace LifeLog
                 }
             }
         }
-        //Заполняет таблицу задачами на день
-        public static DataTable GetData_EveryDayTasks()
+        
+        public static DataTable GetData_EveryDayTasks() //Собирает данные для таблицы с задачами на день
         {
             //try
             //{
@@ -64,8 +64,7 @@ namespace LifeLog
             //    return null;
             //}
         }
-        //Заполняет таблицу задачами на неделю
-        public static DataTable GetData_EveryWeekTasks()
+        public static DataTable GetData_EveryWeekTasks()//Собирает данные для таблицы с задачами на неделю
         {
             //try
             //{
@@ -87,8 +86,8 @@ namespace LifeLog
             //    return null;
             //}
         }
-        //Добавляет новые задачи в базу данных
-        public static bool Add_Task(string name, string content, string data_start, string data_end, string comment)
+
+        public static bool Add_Task(string name, string content, string data_start, string data_end, string comment) //Добавляет новые задачи в базу данных
         {
             //try
             //{
@@ -116,7 +115,7 @@ namespace LifeLog
             //}
         }
 
-        public static bool Remove_Task(int id)
+        public static bool Remove_Task(int id) // Удаляет задачи из BD
         {
             using (SQLiteConnection conect = new SQLiteConnection(db_info))
             {
@@ -136,7 +135,7 @@ namespace LifeLog
             }
         }
 
-        public static bool Change_Task(int id, string name, string content, string data_start, string data_end, string comment)
+        public static bool Change_Task(int id, string name, string content, string data_start, string data_end, string comment)// Изменяет задачи в БД
         {
             using (SQLiteConnection conect = new SQLiteConnection(db_info))
             {

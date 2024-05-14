@@ -15,6 +15,8 @@ namespace LifeLog
         int id;
         string name, content, data_start, data_end, comment;
 
+
+
         private void button_Save_Click(object sender, EventArgs e)
         {
             ConnectionDB.Change_Task(id, textBox_name.Text, textBox_content.Text, textBox_datastart.Text, textBox_dataend.Text, textBox_comments.Text);
@@ -22,7 +24,7 @@ namespace LifeLog
 
         }
 
-        public Change_Task_Form(int id, string name, string content, string data_start, string data_end, string comment)
+        public Change_Task_Form(int id, string name, string content, string data_start, string data_end, string comment)// Инициализация
         {
             InitializeComponent();
             this.id = id;
@@ -33,7 +35,7 @@ namespace LifeLog
             this.comment = comment;
         }
 
-        private void Change_Task_Form_Load(object sender, EventArgs e)
+        private void Change_Task_Form_Load(object sender, EventArgs e)// Заполнение textBox
         {
             textBox_name.Text = name;
             textBox_content.Text = content;

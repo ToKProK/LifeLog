@@ -20,7 +20,7 @@ namespace LifeLog
         }
         static public string task_type;
         static public int task_type_id;
-        private void button_everyweek_Click(object sender, EventArgs e)
+        private void button_everyweek_Click(object sender, EventArgs e)// При нажатии на кнопку "Еженедельные" отправляет пользователя в нужно окно
         {
             this.Hide();
             task_type = "every_week";
@@ -29,7 +29,7 @@ namespace LifeLog
             form.Show();
         }
 
-        private void button_everyday_Click(object sender, EventArgs e)
+        private void button_everyday_Click(object sender, EventArgs e)// При нажатии на кнопку "Ежедневные" отправляет пользователя в нужно окно
         {
             this.Hide();
             task_type = "every_day";
@@ -38,14 +38,14 @@ namespace LifeLog
             form.Show();
         }
 
-        private void Vibor_class_FormClosing(object sender, FormClosingEventArgs e)
+        private void Vibor_class_FormClosing(object sender, FormClosingEventArgs e)//При закрытии окна, приложения тоже закрывается.
         {
             Application.Exit();
         }
 
-        private void Vibor_class_Load(object sender, EventArgs e)
+        private void Vibor_class_Load(object sender, EventArgs e)//При загрузке проверяет существование базы данных
         {
-            ConnectionDB.ConnectionSQLlite();
+            ConnectionDB.CheckDB();
         }
     }
 }

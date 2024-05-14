@@ -13,31 +13,30 @@ namespace LifeLog
 {
     public partial class Tasks_Form : Form
     {
-        public Tasks_Form()
+        public Tasks_Form() //Инициализация
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button_Back_Click(object sender, EventArgs e)//Кнопка для возвращения в предыдущее окно
         {
             this.Hide();
             Vibor_class form = new Vibor_class();
             form.Show();
         }
 
-        private void button_Add_Click(object sender, EventArgs e)
+        private void button_Add_Click(object sender, EventArgs e)//Кнопка добавления задачи
         {
-            this.Hide();
             New_Tasks_Form form = new New_Tasks_Form();
-            form.Show();
+            form.ShowDialog();
         }
 
-        private void Tasks_Form_FormClosing(object sender, FormClosingEventArgs e)
+        private void Tasks_Form_FormClosing(object sender, FormClosingEventArgs e)//При закрытии окна, приложения тоже закрывается.
         {
             Application.Exit();
         }
 
-        private void button_Del_Click(object sender, EventArgs e)
+        private void button_Del_Click(object sender, EventArgs e)// Кнопка удаления
         {
             int id = int.Parse(dataGridView_Tasks.CurrentRow.Cells[0].Value.ToString());
             DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить данную задачу?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -49,11 +48,11 @@ namespace LifeLog
 
         }
 
-        private void Tasks_Form_Load(object sender, EventArgs e)
+        private void Tasks_Form_Load(object sender, EventArgs e)//Событие формы "Загрузка"
         {
             Load_Tasks();
         }
-        private void Load_Tasks()
+        private void Load_Tasks() // Тут выбирается метод, подгрузки задач, пока только "ежедневные" и "еженедельные"
         {
             switch (Vibor_class.task_type) // При нажатии кнопки в форме "Vibor_class" задаётся парамет task_type исходя из которого мы
             {                              // либо загружаем ежедневные либо еженедельные задачи.
@@ -75,17 +74,17 @@ namespace LifeLog
         }
 
 
-        private void LoadEveryDayTasks()
+        private void LoadEveryDayTasks() // Подгрузка ежедневных задач
         {
             dataGridView_Tasks.DataSource = ConnectionDB.GetData_EveryDayTasks();
         }
 
-        private void LoadEveryWeekTasks()
+        private void LoadEveryWeekTasks() // Подгрузка еженедельные задач
         {
             dataGridView_Tasks.DataSource = ConnectionDB.GetData_EveryWeekTasks();
         }
 
-        private void dataGridView_Tasks_DoubleClick(object sender, EventArgs e)
+        private void dataGridView_Tasks_DoubleClick(object sender, EventArgs e)// Событие двойного нажатия по одной из задач, открывается новое окно.
         {
             int id = int.Parse(dataGridView_Tasks.CurrentRow.Cells[0].Value.ToString());
             string name = dataGridView_Tasks.CurrentRow.Cells[1].Value.ToString();

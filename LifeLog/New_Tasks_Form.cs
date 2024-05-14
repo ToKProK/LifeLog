@@ -17,18 +17,6 @@ namespace LifeLog
             InitializeComponent();
         }
 
-        private void New_Tasks_Form_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Tasks_Form form = new Tasks_Form();
-            form.Show();
-        }
-
         private void label5_Click(object sender, EventArgs e)
         {
 
