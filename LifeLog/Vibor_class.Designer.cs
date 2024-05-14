@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_everyweek = new System.Windows.Forms.Button();
+            this.button_everyday = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // button_everyweek
             // 
-            this.button1.Location = new System.Drawing.Point(271, 250);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 76);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Ежедневные задачи";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_everyweek.Location = new System.Drawing.Point(271, 250);
+            this.button_everyweek.Name = "button_everyweek";
+            this.button_everyweek.Size = new System.Drawing.Size(270, 76);
+            this.button_everyweek.TabIndex = 0;
+            this.button_everyweek.Text = "Ежедневные задачи";
+            this.button_everyweek.UseVisualStyleBackColor = true;
+            this.button_everyweek.Click += new System.EventHandler(this.button_everyweek_Click);
             // 
-            // button3
+            // button_everyday
             // 
-            this.button3.Location = new System.Drawing.Point(271, 130);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(270, 76);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Ежедневные задачи";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button_everyday.Location = new System.Drawing.Point(271, 130);
+            this.button_everyday.Name = "button_everyday";
+            this.button_everyday.Size = new System.Drawing.Size(270, 76);
+            this.button_everyday.TabIndex = 2;
+            this.button_everyday.Text = "Ежедневные задачи";
+            this.button_everyday.UseVisualStyleBackColor = true;
+            this.button_everyday.Click += new System.EventHandler(this.button_everyday_Click);
             // 
             // Vibor_class
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_everyday);
+            this.Controls.Add(this.button_everyweek);
             this.Name = "Vibor_class";
             this.Text = "LifeLOg";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Vibor_class_FormClosing);
@@ -69,7 +69,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_everyweek;
+        private System.Windows.Forms.Button button_everyday;
     }
 }

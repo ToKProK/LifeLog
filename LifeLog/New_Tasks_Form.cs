@@ -33,5 +33,10 @@ namespace LifeLog
         {
 
         }
+
+        private void New_Tasks_Form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

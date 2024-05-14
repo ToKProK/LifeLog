@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,5 +43,41 @@ namespace LifeLog
             Delete_Tasks_Form form = new Delete_Tasks_Form();
             form.Show();
         }
+
+        private void Tasks_Form_Load(object sender, EventArgs e)
+        {
+            switch (Vibor_class.task_type) // При нажатии кнопки в форме "Vibor_class" задаётся парамет task_type исходя из которого мы
+            {                              // либо загружаем ежедневные либо еженедельные задачи.
+                case null:
+                    {
+                        break;
+                    }
+                case "every_day":
+                    {
+                        LoadEveryDayTasks();
+                        break;
+                    }
+                case "every_week":
+                    {
+                        LoadEveryWeekTasks();
+                        break;
+                    }
+            }
+            
+        }
+
+
+
+        private void LoadEveryDayTasks()
+        {
+            dataGridView_Tasks.DataSource = ConnectionDB.GetData_EveryDayTasks();
+        }
+
+        private void LoadEveryWeekTasks()
+        {
+            dataGridView_Tasks.DataSource = ConnectionDB.GetData_EveryWeekTasks();
+        }
+
+
     }
 }

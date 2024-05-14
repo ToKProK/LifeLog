@@ -13,21 +13,24 @@ namespace LifeLog
 {
     public partial class Vibor_class : Form
     {
+
         public Vibor_class()
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        static public string task_type;
+        private void button_everyweek_Click(object sender, EventArgs e)
         {
             this.Hide();
+            task_type = "every_week";
             Tasks_Form form = new Tasks_Form();
             form.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button_everyday_Click(object sender, EventArgs e)
         {
             this.Hide();
+            task_type = "every_day";
             Tasks_Form form = new Tasks_Form();
             form.Show();
         }

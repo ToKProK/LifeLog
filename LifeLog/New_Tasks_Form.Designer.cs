@@ -150,6 +150,7 @@
             this.Name = "New_Tasks_Form";
             this.Text = "New_Tasks_Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.New_Tasks_Form_FormClosing);
+            this.Load += new System.EventHandler(this.New_Tasks_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
