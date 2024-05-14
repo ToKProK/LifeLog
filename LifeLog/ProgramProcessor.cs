@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 namespace LifeLog
@@ -26,7 +28,7 @@ namespace LifeLog
                     int id_type = int.Parse(row["id_type"].ToString());
                     if (id_type == 2)
                     {
-                        break;
+                        continue;
                     }
                     else
                     {
@@ -38,7 +40,7 @@ namespace LifeLog
                     int id_type = int.Parse(row["id_type"].ToString());
                     if (id_type == 4)
                     {
-                        break;
+                        continue;
                     }
                     else
                     {
@@ -50,7 +52,7 @@ namespace LifeLog
                     int id_type = int.Parse(row["id_type"].ToString());
                     if (id_type == 3)
                     {
-                        break;
+                        continue;
                     }
                     else
                     {
@@ -62,14 +64,35 @@ namespace LifeLog
                     int id_type = int.Parse(row["id_type"].ToString());
                     if (id_type == 1)
                     {
-                        break;
+                        continue;
                     }
                     else
                     {
                         ConnectionDB.Update_Task_Type(id, 1);
                     }
                 }
+            }
+        }
+        static public void Coloring(DataGridView tabel)
+        {
+            foreach (DataGridViewRow row in tabel.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[7].Value) == 1)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+                else if (Convert.ToInt32(row.Cells[7].Value) == 2)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Green;
+                }
+                else if (Convert.ToInt32(row.Cells[7].Value) == 3)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                else
+                {
 
+                }
             }
         }
     }

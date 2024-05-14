@@ -75,6 +75,7 @@ namespace LifeLog
                     }
             }
             ProgramProcessor.Task_Handler(Data);
+            ColorTable();
         }
 
 
@@ -120,6 +121,18 @@ namespace LifeLog
                 ConnectionDB.Complete_Task(id, Complete);
                 Load_Tasks();
             }));
+        }
+
+        private void ColorTable()
+        {
+            //foreach (DataGridViewRow row in dataGridView_Tasks.Rows)
+            //{
+            //    //if (Convert.ToInt32(row.Cells[7].Value) < Convert.ToInt32(row.Cells[10].Value))
+
+            //    row.DefaultCellStyle.BackColor = Color.Red;
+            //}
+            ProgramProcessor.Coloring(dataGridView_Tasks);
+               
         }
     }
 }
