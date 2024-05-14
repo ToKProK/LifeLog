@@ -25,9 +25,8 @@ namespace LifeLog
         private void button_Save_Click(object sender, EventArgs e)
         {
             ConnectionDB.Add_Task(textBox_name.Text, textBox_content.Text, textBox_datastart.Text, textBox_dataend.Text, textBox_comments.Text);
-            this.Hide();
-            Tasks_Form form = new Tasks_Form();
-            form.Show();
+            this.Close();
         }
+
     }
 }

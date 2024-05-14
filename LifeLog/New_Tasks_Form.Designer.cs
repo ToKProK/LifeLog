@@ -152,7 +152,7 @@
             this.button_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Save.Location = new System.Drawing.Point(86, 481);
+            this.button_Save.Location = new System.Drawing.Point(87, 481);
             this.button_Save.Margin = new System.Windows.Forms.Padding(6);
             this.button_Save.MinimumSize = new System.Drawing.Size(70, 39);
             this.button_Save.Name = "button_Save";

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.dataGridView_Tasks = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button_Add = new System.Windows.Forms.Button();
+            this.button_Del = new System.Windows.Forms.Button();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,9 +41,6 @@
             this.Комментарий = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button_Add = new System.Windows.Forms.Button();
-            this.button_Del = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Tasks)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +65,36 @@
             this.dataGridView_Tasks.Size = new System.Drawing.Size(741, 256);
             this.dataGridView_Tasks.TabIndex = 0;
             this.dataGridView_Tasks.DoubleClick += new System.EventHandler(this.dataGridView_Tasks_DoubleClick);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 40);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "<--";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button_Back_Click);
+            // 
+            // button_Add
+            // 
+            this.button_Add.Location = new System.Drawing.Point(12, 345);
+            this.button_Add.Name = "button_Add";
+            this.button_Add.Size = new System.Drawing.Size(134, 55);
+            this.button_Add.TabIndex = 3;
+            this.button_Add.Text = "Добавить задачу";
+            this.button_Add.UseVisualStyleBackColor = true;
+            this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
+            // 
+            // button_Del
+            // 
+            this.button_Del.Location = new System.Drawing.Point(152, 345);
+            this.button_Del.Name = "button_Del";
+            this.button_Del.Size = new System.Drawing.Size(134, 55);
+            this.button_Del.TabIndex = 4;
+            this.button_Del.Text = "Удалить задачу";
+            this.button_Del.UseVisualStyleBackColor = true;
+            this.button_Del.Click += new System.EventHandler(this.button_Del_Click);
             // 
             // Column4
             // 
@@ -136,41 +166,11 @@
             this.id_class.ReadOnly = true;
             this.id_class.Visible = false;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 40);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "<--";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button_Back_Click);
-            // 
-            // button_Add
-            // 
-            this.button_Add.Location = new System.Drawing.Point(12, 345);
-            this.button_Add.Name = "button_Add";
-            this.button_Add.Size = new System.Drawing.Size(134, 55);
-            this.button_Add.TabIndex = 3;
-            this.button_Add.Text = "Добавить задачу";
-            this.button_Add.UseVisualStyleBackColor = true;
-            this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
-            // 
-            // button_Del
-            // 
-            this.button_Del.Location = new System.Drawing.Point(152, 345);
-            this.button_Del.Name = "button_Del";
-            this.button_Del.Size = new System.Drawing.Size(134, 55);
-            this.button_Del.TabIndex = 4;
-            this.button_Del.Text = "Удалить задачу";
-            this.button_Del.UseVisualStyleBackColor = true;
-            this.button_Del.Click += new System.EventHandler(this.button_Del_Click);
-            // 
             // Tasks_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 461);
+            this.ClientSize = new System.Drawing.Size(777, 435);
             this.Controls.Add(this.button_Del);
             this.Controls.Add(this.button_Add);
             this.Controls.Add(this.button2);

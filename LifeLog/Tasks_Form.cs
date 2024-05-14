@@ -86,15 +86,18 @@ namespace LifeLog
 
         private void dataGridView_Tasks_DoubleClick(object sender, EventArgs e)// Событие двойного нажатия по одной из задач, открывается новое окно.
         {
-            int id = int.Parse(dataGridView_Tasks.CurrentRow.Cells[0].Value.ToString());
-            string name = dataGridView_Tasks.CurrentRow.Cells[1].Value.ToString();
-            string content = dataGridView_Tasks.CurrentRow.Cells[2].Value.ToString();
-            string data_start = dataGridView_Tasks.CurrentRow.Cells[3].Value.ToString();
-            string data_end = dataGridView_Tasks.CurrentRow.Cells[4].Value.ToString();
-            string comment = dataGridView_Tasks.CurrentRow.Cells[6].Value.ToString();
-            Change_Task_Form form = new Change_Task_Form(id, name, content, data_start, data_end, comment);
-            form.ShowDialog();
-            Load_Tasks();
+            if (dataGridView_Tasks.CurrentCellAddress.X != 5) //Данное условие позволяет обходить вход в редактирование при двойном нажатие на галочку.
+            {
+                int id = int.Parse(dataGridView_Tasks.CurrentRow.Cells[0].Value.ToString());
+                string name = dataGridView_Tasks.CurrentRow.Cells[1].Value.ToString();
+                string content = dataGridView_Tasks.CurrentRow.Cells[2].Value.ToString();
+                string data_start = dataGridView_Tasks.CurrentRow.Cells[3].Value.ToString();
+                string data_end = dataGridView_Tasks.CurrentRow.Cells[4].Value.ToString();
+                string comment = dataGridView_Tasks.CurrentRow.Cells[6].Value.ToString();
+                Change_Task_Form form = new Change_Task_Form(id, name, content, data_start, data_end, comment);
+                form.ShowDialog();
+                Load_Tasks();
+            }
         }
     }
 }
