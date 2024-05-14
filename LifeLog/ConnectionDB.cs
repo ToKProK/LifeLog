@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,12 +16,12 @@ namespace LifeLog
     internal class ConnectionDB
     {
         static string db_info = @"Data Source=lifelog.db;Pooling=true;;Version=3";
-        
+
         public static void CheckDB() //Проверяет наличие базы данных, если нет создаёт пустую.
         {
             if (!File.Exists("lifelog.db"))
             {
-                DialogResult result =  MessageBox.Show("База данных отсутсвует, создать новую?", "База данных", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("База данных отсутсвует, создать новую?", "База данных", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result != DialogResult.Yes)
                 {
                     MessageBox.Show("База данных отсутсвует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -30,9 +32,15 @@ namespace LifeLog
                 SQLiteConnection.CreateFile("lifelog.db");
                 using (SQLiteConnection conect = new SQLiteConnection(db_info))
                 {
-                    string command = "CREATE TABLE \"Категория_задачи\" (\"id_class\" INTEGER,\"Название\" TEXT,PRIMARY KEY(\"id_class\" AUTOINCREMENT));" +
-                        "CREATE TABLE \"Тип_задачи\" (\"id_type\" INTEGER, \"Название\" TEXT,PRIMARY KEY(\"id_type\" AUTOINCREMENT));" +
-                        "CREATE TABLE \"Задачи\" (\"id\" INTEGER NOT NULL, \"Название\" TEXT NOT NULL, \"Содержание\" TEXT, \"Дата_начала\" TEXT NOT NULL, \"Дата_конца\" TEXT NOT NULL, \"Завершено\" INTEGER, \"Комментарий\" TEXT, \"id_type\" INTEGER, \"id_class\" INTEGER, PRIMARY KEY(\"id\" AUTOINCREMENT), FOREIGN KEY(\"id_type\") REFERENCES \"Тип_задачи\"(\"id_type\"), FOREIGN KEY(\"id_class\") REFERENCES \"Категория_задачи\"(\"id_class\"))";
+                    string command = "CREATE TABLE \"Категория_задачи\" (\"id_class\" INTEGER,\"Название\" TEXT,PRIMARY KEY(\"id_class\" AUTOINCREMENT)); " +
+                        "CREATE TABLE \"Стадия_задачи\" (\"id_type\" INTEGER, \"Название\" TEXT,PRIMARY KEY(\"id_type\" AUTOINCREMENT)); " +
+                        "CREATE TABLE \"Задачи\" (\"id\" INTEGER NOT NULL, \"Название\" TEXT NOT NULL, \"Содержание\" TEXT, \"Дата_начала\" TEXT NOT NULL, \"Дата_конца\" TEXT NOT NULL, \"Завершено\" INTEGER, \"Комментарий\" TEXT, \"id_type\" INTEGER, \"id_class\" INTEGER, PRIMARY KEY(\"id\" AUTOINCREMENT), FOREIGN KEY(\"id_type\") REFERENCES \"Тип_задачи\"(\"id_type\"), FOREIGN KEY(\"id_class\") REFERENCES \"Категория_задачи\"(\"id_class\")) " +
+                        "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('1', 'Невыполненные'); " +
+                        "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('2', 'Выполненные '); " +
+                        "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('3', 'В процессе выполнения'); " +
+                        "INSERT INTO \"Стадия_задачи\" (\"id_type\", \"Название\") VALUES ('4', 'Планируемые'); " +
+                        "INSERT INTO \"Категория_задачи\" (\"id_class\", \"Название\") VALUES ('1', 'Ежедневная');" +
+                        "INSERT INTO \"Категория_задачи\" (\"id_class\", \"Название\") VALUES ('2', 'Еженедельная');";
                     using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                     {
                         conect.Open();
@@ -41,23 +49,23 @@ namespace LifeLog
                 }
             }
         }
-        
+
         public static DataTable GetData_EveryDayTasks() //Собирает данные для таблицы с задачами на день
         {
             //try
             //{
-                DataTable dt = new DataTable();
-                using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            DataTable dt = new DataTable();
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = "SELECT * FROM Задачи WHERE id_class = 1";
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                 {
-                    string command = "SELECT * FROM Задачи WHERE id_class = 1";
-                    using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
-                    {
-                        conect.Open();
-                        SQLiteDataReader reader = cmd.ExecuteReader();
-                        dt.Load(reader);
-                    }
+                    conect.Open();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
                 }
-                return dt;
+            }
+            return dt;
             //}
             ////catch
             //{
@@ -68,18 +76,18 @@ namespace LifeLog
         {
             //try
             //{
-                DataTable dt = new DataTable();
-                using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            DataTable dt = new DataTable();
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = "SELECT * FROM Задачи WHERE id_class = 2";
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                 {
-                    string command = "SELECT * FROM Задачи WHERE id_class = 2";
-                    using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
-                    {
-                        conect.Open();
-                        SQLiteDataReader reader = cmd.ExecuteReader();
-                        dt.Load(reader);
-                    }
+                    conect.Open();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
                 }
-                return dt;
+            }
+            return dt;
             //}
             //catch
             //{
@@ -91,23 +99,23 @@ namespace LifeLog
         {
             //try
             //{
-                using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = "INSERT INTO \"Задачи\" (\"Название\", \"Содержание\", \"Дата_начала\", \"Дата_конца\", \"Завершено\", \"Комментарий\", \"id_type\", \"id_class\") " +
+                                 $"VALUES ('{name}', '{content}', '{data_start}', '{data_end}', '0', '{comment}', '1', '{Vibor_class.task_type_id}');";//type, class (тип сразу ставить не успел, класс ставиться в зависимости от выбранной вкладки вначале)
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                 {
-                    string command = "INSERT INTO \"Задачи\" (\"Название\", \"Содержание\", \"Дата_начала\", \"Дата_конца\", \"Завершено\", \"Комментарий\", \"id_type\", \"id_class\") " +
-                                     $"VALUES ('{name}', '{content}', '{data_start}', '{data_end}', '0', '{comment}', '1', '{Vibor_class.task_type_id}');";//type, class (тип сразу ставить не успел, класс ставиться в зависимости от выбранной вкладки вначале)
-                    using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                    conect.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
                     {
-                        conect.Open();
-                        if (cmd.ExecuteNonQuery() > 0)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
+            }
             //}
             //catch (Exception ex)
             //{
@@ -161,6 +169,27 @@ namespace LifeLog
             using (SQLiteConnection conect = new SQLiteConnection(db_info))
             {
                 string command = $"UPDATE Задачи SET Завершено = \'{complete}\' " +
+                                 $"WHERE id = {id}";
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                {
+                    conect.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public static bool Update_Task_Type(int id, int task_type)
+        {
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = $"UPDATE Задачи SET id_type = \'{task_type}\' " +
                                  $"WHERE id = {id}";
                 using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                 {

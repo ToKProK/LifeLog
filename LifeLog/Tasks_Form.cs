@@ -13,6 +13,7 @@ namespace LifeLog
 {
     public partial class Tasks_Form : Form
     {
+        static DataTable Data;
         public Tasks_Form() //Инициализация
         {
             InitializeComponent();
@@ -56,7 +57,6 @@ namespace LifeLog
         }
         private void Load_Tasks() // Тут выбирается метод, подгрузки задач, пока только "ежедневные" и "еженедельные"
         {
-            DataTable Data;
             switch (Vibor_class.task_type) // При нажатии кнопки в форме "Vibor_class" задаётся парамет task_type исходя из которого мы
             {                              // либо загружаем ежедневные либо еженедельные задачи.
                 case null:
@@ -65,15 +65,16 @@ namespace LifeLog
                     }
                 case "every_day":
                     {
-                        LoadEveryDayTasks();
+                        Data = LoadEveryDayTasks();
                         break;
                     }
                 case "every_week":
                     {
-                        LoadEveryWeekTasks();
+                        Data = LoadEveryWeekTasks();
                         break;
                     }
             }
+            ProgramProcessor.Task_Handler(Data);
         }
 
 
