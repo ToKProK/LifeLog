@@ -29,6 +29,7 @@ namespace LifeLog
         {
             New_Tasks_Form form = new New_Tasks_Form();
             form.ShowDialog();
+            Load_Tasks();
         }
 
         private void Tasks_Form_FormClosing(object sender, FormClosingEventArgs e)//При закрытии окна, приложения тоже закрывается.
@@ -55,6 +56,7 @@ namespace LifeLog
         }
         private void Load_Tasks() // Тут выбирается метод, подгрузки задач, пока только "ежедневные" и "еженедельные"
         {
+            DataTable Data;
             switch (Vibor_class.task_type) // При нажатии кнопки в форме "Vibor_class" задаётся парамет task_type исходя из которого мы
             {                              // либо загружаем ежедневные либо еженедельные задачи.
                 case null:
@@ -75,14 +77,18 @@ namespace LifeLog
         }
 
 
-        private void LoadEveryDayTasks() // Подгрузка ежедневных задач
+        private DataTable LoadEveryDayTasks() // Подгрузка ежедневных задач
         {
-            dataGridView_Tasks.DataSource = ConnectionDB.GetData_EveryDayTasks();
+            DataTable Data = ConnectionDB.GetData_EveryDayTasks();
+            dataGridView_Tasks.DataSource = Data;
+            return Data;
         }
 
-        private void LoadEveryWeekTasks() // Подгрузка еженедельные задач
+        private DataTable LoadEveryWeekTasks() // Подгрузка еженедельные задач
         {
-            dataGridView_Tasks.DataSource = ConnectionDB.GetData_EveryWeekTasks();
+            DataTable Data = ConnectionDB.GetData_EveryWeekTasks();
+            dataGridView_Tasks.DataSource = Data;
+            return Data;
         }
 
         private void dataGridView_Tasks_DoubleClick(object sender, EventArgs e)// Событие двойного нажатия по одной из задач, открывается новое окно.

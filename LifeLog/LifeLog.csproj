@@ -80,6 +80,7 @@
     <Compile Include="New_Tasks_Form.Designer.cs">
       <DependentUpon>New_Tasks_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProgramProcessor.cs" />
     <Compile Include="Tasks_Form.cs">
       <SubType>Form</SubType>
     </Compile>

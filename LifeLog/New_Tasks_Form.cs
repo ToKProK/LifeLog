@@ -24,9 +24,28 @@ namespace LifeLog
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            ConnectionDB.Add_Task(textBox_name.Text, textBox_content.Text, textBox_datastart.Text, textBox_dataend.Text, textBox_comments.Text);
-            this.Close();
+            if (textBox_name.Text == null || textBox_name.Text == "")
+            {
+                MessageBox.Show("Введите название задаче", "Неверное название", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (dateTimePicker_start.Value <= dateTimePicker_end.Value)
+            {
+                MessageBox.Show("Начальное время не должно превышать конечного", "Неверное время", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string time_start = dateTimePicker_start.Text;
+                string time_end = dateTimePicker_start.Text;
+                ConnectionDB.Add_Task(textBox_name.Text, textBox_content.Text, time_start, time_end, textBox_comments.Text);
+                this.Close();
+            }
+            
         }
 
+        private void New_Tasks_Form_Load(object sender, EventArgs e)
+        {
+            dateTimePicker_start.Value = DateTime.Now;
+            dateTimePicker_end.Value = DateTime.Now;
+        }
     }
 }

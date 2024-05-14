@@ -35,29 +35,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_name = new System.Windows.Forms.TextBox();
-            this.textBox_dataend = new System.Windows.Forms.TextBox();
             this.textBox_content = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox_datastart = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_end = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.dateTimePicker_end);
+            this.panel1.Controls.Add(this.dateTimePicker_start);
             this.panel1.Controls.Add(this.button_Save);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.textBox_comments);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.textBox_name);
-            this.panel1.Controls.Add(this.textBox_dataend);
             this.panel1.Controls.Add(this.textBox_content);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox_datastart);
             this.panel1.Location = new System.Drawing.Point(15, 65);
             this.panel1.MinimumSize = new System.Drawing.Size(364, 567);
             this.panel1.Name = "panel1";
@@ -124,13 +124,6 @@
             this.textBox_name.Size = new System.Drawing.Size(328, 33);
             this.textBox_name.TabIndex = 5;
             // 
-            // textBox_dataend
-            // 
-            this.textBox_dataend.Location = new System.Drawing.Point(11, 304);
-            this.textBox_dataend.Name = "textBox_dataend";
-            this.textBox_dataend.Size = new System.Drawing.Size(332, 33);
-            this.textBox_dataend.TabIndex = 11;
-            // 
             // textBox_content
             // 
             this.textBox_content.Location = new System.Drawing.Point(11, 129);
@@ -158,13 +151,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Содержимое";
             // 
-            // textBox_datastart
-            // 
-            this.textBox_datastart.Location = new System.Drawing.Point(11, 216);
-            this.textBox_datastart.Name = "textBox_datastart";
-            this.textBox_datastart.Size = new System.Drawing.Size(328, 33);
-            this.textBox_datastart.TabIndex = 9;
-            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -175,6 +161,25 @@
             this.label1.Size = new System.Drawing.Size(173, 26);
             this.label1.TabIndex = 15;
             this.label1.Text = "Изменить задачу";
+            // 
+            // dateTimePicker_start
+            // 
+            this.dateTimePicker_start.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_start.Location = new System.Drawing.Point(11, 215);
+            this.dateTimePicker_start.Name = "dateTimePicker_start";
+            this.dateTimePicker_start.ShowUpDown = true;
+            this.dateTimePicker_start.Size = new System.Drawing.Size(97, 33);
+            this.dateTimePicker_start.TabIndex = 16;
+            // 
+            // dateTimePicker_end
+            // 
+            this.dateTimePicker_end.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_end.Location = new System.Drawing.Point(11, 303);
+            this.dateTimePicker_end.Name = "dateTimePicker_end";
+            this.dateTimePicker_end.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateTimePicker_end.ShowUpDown = true;
+            this.dateTimePicker_end.Size = new System.Drawing.Size(97, 33);
+            this.dateTimePicker_end.TabIndex = 17;
             // 
             // Change_Task_Form
             // 
@@ -204,11 +209,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_name;
-        private System.Windows.Forms.TextBox textBox_dataend;
         private System.Windows.Forms.TextBox textBox_content;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox_datastart;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_start;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_end;
     }
 }
