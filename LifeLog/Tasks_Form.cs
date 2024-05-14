@@ -51,6 +51,7 @@ namespace LifeLog
         private void Tasks_Form_Load(object sender, EventArgs e)//Событие формы "Загрузка"
         {
             Load_Tasks();
+            dataGridView_Tasks.AutoResizeColumn(1);
         }
         private void Load_Tasks() // Тут выбирается метод, подгрузки задач, пока только "ежедневные" и "еженедельные"
         {
@@ -98,6 +99,20 @@ namespace LifeLog
                 form.ShowDialog();
                 Load_Tasks();
             }
+        }
+
+        private void dataGridView_Tasks_CellEndEdit(object sender, DataGridViewCellEventArgs e)//Когда нажимем на галочку выполнил происходит это событие
+        { 
+            this.BeginInvoke(new MethodInvoker(() => //Вылезала ошибка, исправил её через ассинхронный метод
+                                                     //https://stackoverflow.com/questions/26522927/how-to-evade-reentrant-call-to-setcurrentcelladdresscore
+            {
+                int id = int.Parse(dataGridView_Tasks.CurrentRow.Cells[0].Value.ToString());
+                string com = dataGridView_Tasks.CurrentRow.Cells[5].Value.ToString();
+                if (com == "") { com = "0"; }
+                int Complete = int.Parse(com);
+                ConnectionDB.Complete_Task(id, Complete);
+                Load_Tasks();
+            }));
         }
     }
 }

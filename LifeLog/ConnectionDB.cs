@@ -155,6 +155,27 @@ namespace LifeLog
                 }
             }
         }
+
+        public static bool Complete_Task(int id, int complete)// Изменяет статус задачи при изменение галочки
+        {
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = $"UPDATE Задачи SET Завершено = \'{complete}\' " +
+                                 $"WHERE id = {id}";
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                {
+                    conect.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
     }
 }
     
