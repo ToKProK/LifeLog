@@ -19,10 +19,12 @@ namespace LifeLog
             InitializeComponent();
         }
         static public string task_type;
+        static public int task_type_id;
         private void button_everyweek_Click(object sender, EventArgs e)
         {
             this.Hide();
             task_type = "every_week";
+            task_type_id = 2;
             Tasks_Form form = new Tasks_Form();
             form.Show();
         }
@@ -31,6 +33,7 @@ namespace LifeLog
         {
             this.Hide();
             task_type = "every_day";
+            task_type_id = 1;
             Tasks_Form form = new Tasks_Form();
             form.Show();
         }

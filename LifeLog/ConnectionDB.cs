@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace LifeLog
 {
     internal class ConnectionDB
     {
         static string db_info = @"Data Source=lifelog.db;Pooling=true;;Version=3";
+        //Проверяет наличие базы данных, если нет создаёт пустую.
         public static void ConnectionSQLlite()
         {
             if (!File.Exists("lifelog.db"))
@@ -39,7 +41,7 @@ namespace LifeLog
                 }
             }
         }
-
+        //Заполняет таблицу задачами на день
         public static DataTable GetData_EveryDayTasks()
         {
             //try
@@ -47,7 +49,7 @@ namespace LifeLog
                 DataTable dt = new DataTable();
                 using (SQLiteConnection conect = new SQLiteConnection(db_info))
                 {
-                    string command = "SELECT * FROM Задачи";
+                    string command = "SELECT * FROM Задачи WHERE id_class = 1";
                     using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                     {
                         conect.Open();
@@ -62,7 +64,7 @@ namespace LifeLog
             //    return null;
             //}
         }
-
+        //Заполняет таблицу задачами на неделю
         public static DataTable GetData_EveryWeekTasks()
         {
             //try
@@ -70,7 +72,7 @@ namespace LifeLog
                 DataTable dt = new DataTable();
                 using (SQLiteConnection conect = new SQLiteConnection(db_info))
                 {
-                    string command = "SELECT * FROM Задачи";
+                    string command = "SELECT * FROM Задачи WHERE id_class = 2";
                     using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                     {
                         conect.Open();
@@ -84,6 +86,75 @@ namespace LifeLog
             //{
             //    return null;
             //}
+        }
+        //Добавляет новые задачи в базу данных
+        public static bool Add_Task(string name, string content, string data_start, string data_end, string comment)
+        {
+            //try
+            //{
+                using (SQLiteConnection conect = new SQLiteConnection(db_info))
+                {
+                    string command = "INSERT INTO \"Задачи\" (\"Название\", \"Содержание\", \"Дата_начала\", \"Дата_конца\", \"Завершено\", \"Комментарий\", \"id_type\", \"id_class\") " +
+                                     $"VALUES ('{name}', '{content}', '{data_start}', '{data_end}', '0', '{comment}', '1', '{Vibor_class.task_type_id}');";//type, class (тип сразу ставить не успел, класс ставиться в зависимости от выбранной вкладки вначале)
+                    using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                    {
+                        conect.Open();
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
+        }
+
+        public static bool Remove_Task(int id)
+        {
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = $"DELETE FROM \"Задачи\" WHERE id = {id}";
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                {
+                    conect.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public static bool Change_Task(int id, string name, string content, string data_start, string data_end, string comment)
+        {
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = $"UPDATE Задачи SET Название = \"{name}\", Содержание = \"{content}\", Дата_начала = \"{data_start}\", Дата_конца = \"{data_end}\", Комментарий = \"{comment}\" " +
+                                 $"WHERE id = {id}";
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                {
+                    conect.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
         }
     }
 }

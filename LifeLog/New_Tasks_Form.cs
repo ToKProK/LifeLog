@@ -34,9 +34,12 @@ namespace LifeLog
 
         }
 
-        private void New_Tasks_Form_Load(object sender, EventArgs e)
+        private void button_Save_Click(object sender, EventArgs e)
         {
-
+            ConnectionDB.Add_Task(textBox_name.Text, textBox_content.Text, textBox_datastart.Text, textBox_dataend.Text, textBox_comments.Text);
+            this.Hide();
+            Tasks_Form form = new Tasks_Form();
+            form.Show();
         }
     }
 }
