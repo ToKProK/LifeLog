@@ -119,7 +119,7 @@ namespace LifeLog
                 if (com == "") { com = "0"; }
                 int Complete = int.Parse(com);
                 ConnectionDB.Complete_Task(id, Complete);
-                Load_Tasks();
+                Load_Tasks(); Load_Tasks();
             }));
         }
     }
