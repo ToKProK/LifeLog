@@ -57,6 +57,7 @@
             // 
             // textBox_name
             // 
+            this.textBox_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.textBox_name.Location = new System.Drawing.Point(11, 40);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(328, 33);
@@ -84,6 +85,7 @@
             // 
             // textBox_content
             // 
+            this.textBox_content.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.textBox_content.Location = new System.Drawing.Point(11, 129);
             this.textBox_content.Name = "textBox_content";
             this.textBox_content.Size = new System.Drawing.Size(328, 33);
@@ -157,6 +159,8 @@
             this.button_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(96)))), ((int)(((byte)(232)))));
+            this.button_Save.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button_Save.Location = new System.Drawing.Point(87, 481);
             this.button_Save.Margin = new System.Windows.Forms.Padding(6);
             this.button_Save.MinimumSize = new System.Drawing.Size(70, 39);
@@ -164,7 +168,7 @@
             this.button_Save.Size = new System.Drawing.Size(202, 60);
             this.button_Save.TabIndex = 14;
             this.button_Save.Text = "Сохранить";
-            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.UseVisualStyleBackColor = false;
             this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // label6
@@ -179,6 +183,7 @@
             // 
             // textBox_comments
             // 
+            this.textBox_comments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.textBox_comments.Location = new System.Drawing.Point(11, 391);
             this.textBox_comments.Multiline = true;
             this.textBox_comments.Name = "textBox_comments";
@@ -189,6 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(405, 643);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
@@ -196,6 +202,7 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(410, 682);
             this.Name = "New_Tasks_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New_Tasks_Form";
             this.Load += new System.EventHandler(this.New_Tasks_Form_Load);
             this.panel1.ResumeLayout(false);

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker_end = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
             this.button_Save = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_comments = new System.Windows.Forms.TextBox();
@@ -39,8 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_end = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,11 +64,37 @@
             this.panel1.Size = new System.Drawing.Size(364, 567);
             this.panel1.TabIndex = 16;
             // 
+            // dateTimePicker_end
+            // 
+            this.dateTimePicker_end.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_end.Location = new System.Drawing.Point(11, 303);
+            this.dateTimePicker_end.Name = "dateTimePicker_end";
+            this.dateTimePicker_end.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateTimePicker_end.ShowUpDown = true;
+            this.dateTimePicker_end.Size = new System.Drawing.Size(97, 33);
+            this.dateTimePicker_end.TabIndex = 17;
+            // 
+            // dateTimePicker_start
+            // 
+            this.dateTimePicker_start.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.dateTimePicker_start.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.dateTimePicker_start.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.dateTimePicker_start.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.dateTimePicker_start.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.dateTimePicker_start.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_start.Location = new System.Drawing.Point(11, 215);
+            this.dateTimePicker_start.Name = "dateTimePicker_start";
+            this.dateTimePicker_start.ShowUpDown = true;
+            this.dateTimePicker_start.Size = new System.Drawing.Size(97, 33);
+            this.dateTimePicker_start.TabIndex = 16;
+            // 
             // button_Save
             // 
             this.button_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(96)))), ((int)(((byte)(232)))));
+            this.button_Save.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button_Save.Location = new System.Drawing.Point(86, 481);
             this.button_Save.Margin = new System.Windows.Forms.Padding(6);
             this.button_Save.MinimumSize = new System.Drawing.Size(70, 39);
@@ -76,7 +102,7 @@
             this.button_Save.Size = new System.Drawing.Size(185, 60);
             this.button_Save.TabIndex = 14;
             this.button_Save.Text = "Сохранить";
-            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.UseVisualStyleBackColor = false;
             this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // label6
@@ -91,6 +117,7 @@
             // 
             // textBox_comments
             // 
+            this.textBox_comments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.textBox_comments.Location = new System.Drawing.Point(11, 391);
             this.textBox_comments.Multiline = true;
             this.textBox_comments.Name = "textBox_comments";
@@ -119,6 +146,7 @@
             // 
             // textBox_name
             // 
+            this.textBox_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.textBox_name.Location = new System.Drawing.Point(11, 40);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(328, 33);
@@ -126,6 +154,7 @@
             // 
             // textBox_content
             // 
+            this.textBox_content.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.textBox_content.Location = new System.Drawing.Point(11, 129);
             this.textBox_content.Name = "textBox_content";
             this.textBox_content.Size = new System.Drawing.Size(328, 33);
@@ -162,35 +191,18 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Изменить задачу";
             // 
-            // dateTimePicker_start
-            // 
-            this.dateTimePicker_start.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker_start.Location = new System.Drawing.Point(11, 215);
-            this.dateTimePicker_start.Name = "dateTimePicker_start";
-            this.dateTimePicker_start.ShowUpDown = true;
-            this.dateTimePicker_start.Size = new System.Drawing.Size(97, 33);
-            this.dateTimePicker_start.TabIndex = 16;
-            // 
-            // dateTimePicker_end
-            // 
-            this.dateTimePicker_end.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker_end.Location = new System.Drawing.Point(11, 303);
-            this.dateTimePicker_end.Name = "dateTimePicker_end";
-            this.dateTimePicker_end.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateTimePicker_end.ShowUpDown = true;
-            this.dateTimePicker_end.Size = new System.Drawing.Size(97, 33);
-            this.dateTimePicker_end.TabIndex = 17;
-            // 
             // Change_Task_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(391, 637);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Change_Task_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Change_Task_Form";
             this.Load += new System.EventHandler(this.Change_Task_Form_Load);
             this.panel1.ResumeLayout(false);
