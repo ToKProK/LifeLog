@@ -34,17 +34,18 @@
             // 
             // button_everyweek
             // 
-            this.button_everyweek.Location = new System.Drawing.Point(271, 250);
+            this.button_everyweek.Location = new System.Drawing.Point(271, 296);
             this.button_everyweek.Name = "button_everyweek";
             this.button_everyweek.Size = new System.Drawing.Size(270, 76);
             this.button_everyweek.TabIndex = 0;
             this.button_everyweek.Text = "Ежедневные задачи";
             this.button_everyweek.UseVisualStyleBackColor = true;
+            this.button_everyweek.Visible = false;
             this.button_everyweek.Click += new System.EventHandler(this.button_everyweek_Click);
             // 
             // button_everyday
             // 
-            this.button_everyday.Location = new System.Drawing.Point(271, 130);
+            this.button_everyday.Location = new System.Drawing.Point(271, 160);
             this.button_everyday.Name = "button_everyday";
             this.button_everyday.Size = new System.Drawing.Size(270, 76);
             this.button_everyday.TabIndex = 2;
