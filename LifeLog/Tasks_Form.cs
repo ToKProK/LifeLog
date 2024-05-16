@@ -55,6 +55,7 @@ namespace LifeLog
         private void Tasks_Form_Load(object sender, EventArgs e)//Событие формы "Загрузка"
         {
             Load_Tasks();
+            Load_Tasks();
             dataGridView_Tasks.AutoResizeColumn(1);
 
         }

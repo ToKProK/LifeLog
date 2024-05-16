@@ -46,7 +46,11 @@ namespace LifeLog
         private void Vibor_class_Load(object sender, EventArgs e)//При загрузке проверяет существование базы данных
         {
             ConnectionDB.CheckDB();//Проеряет наличие БД, при отсутствии создаёт её
-            ConnectionDB.DayUpdate();//Обновляет дни, в будущем можно будет создать Историю   
+            bool day_change = ConnectionDB.DayUpdate();//Обновляет дни, в будущем можно будет создать Историю   
+            if (day_change)
+            {
+                ConnectionDB.Change_complete_to_null();
+            }
         }
         
     }

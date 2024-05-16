@@ -208,8 +208,9 @@ namespace LifeLog
             }
         }
 
-        public static void DayUpdate()//Обновляет актуальность базы данных на сегодняшний день для ежедневных заданий.
+        public static bool DayUpdate()//Обновляет актуальность базы данных на сегодняшний день для ежедневных заданий.
         {
+            bool day_changed = false;
             DateTime day = DateTime.Now.Date;
             DataTable Data = GetData_EveryDayTasks();
             foreach (DataRow row in Data.Rows)
@@ -219,9 +220,10 @@ namespace LifeLog
                 DateTime db_day_datetime = DateTime.Parse(db_day);
                 if (day != db_day_datetime) 
                 {
+                    day_changed = true;
                     using (SQLiteConnection conect = new SQLiteConnection(db_info))
                     {
-                        string command = $"UPDATE Задачи SET day = \'{db_day_datetime}\' " +
+                        string command = $"UPDATE Задачи SET day = \'{day}\' " +
                                          $"WHERE id = {id}";
                         using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
                         {
@@ -229,6 +231,29 @@ namespace LifeLog
                             cmd.ExecuteNonQuery();
                         }
                     }
+                }
+            }
+            if (day_changed)
+            {
+                Console.WriteLine("Дата изменена");
+            }
+            else
+            {
+                Console.WriteLine("Дата не изменена");
+            }
+            return day_changed;
+        }
+
+        public static void Change_complete_to_null()
+        {
+            using (SQLiteConnection conect = new SQLiteConnection(db_info))
+            {
+                string command = $"UPDATE Задачи SET Завершено = {0};";
+                using (SQLiteCommand cmd = new SQLiteCommand(command, conect))
+                {
+                    conect.Open();
+                    cmd.ExecuteNonQuery();
+                    
                 }
             }
         }
