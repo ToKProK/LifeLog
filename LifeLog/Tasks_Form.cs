@@ -13,6 +13,8 @@ namespace LifeLog
 {
     public partial class Tasks_Form : Form
     {
+        public static bool handker_mark = false; // Данная переменная позволяет корректно обрабатывать изменение состояния вывполнения, она выключается когда 
+                                                 // происходит загрузка данных в таблицу из БД и включается, когда загрузка базы данных закончилась и на калочку нажимет теперь пользователь.
         static DataTable Data;
         public Tasks_Form() //Инициализация
         {
@@ -30,7 +32,7 @@ namespace LifeLog
         {
             New_Tasks_Form form = new New_Tasks_Form();
             form.ShowDialog();
-            Load_Tasks();
+            Load_Tasks(); Load_Tasks();
         }
 
         private void Tasks_Form_FormClosing(object sender, FormClosingEventArgs e)//При закрытии окна, приложения тоже закрывается.
@@ -45,7 +47,7 @@ namespace LifeLog
             if (result == DialogResult.Yes)
             {
                 ConnectionDB.Remove_Task(id);
-                Load_Tasks();
+                Load_Tasks(); Load_Tasks();
             }
 
         }
@@ -54,9 +56,11 @@ namespace LifeLog
         {
             Load_Tasks();
             dataGridView_Tasks.AutoResizeColumn(1);
+
         }
         private void Load_Tasks() // Тут выбирается метод, подгрузки задач, пока только "ежедневные" и "еженедельные"
         {
+            handker_mark = false; // см. описание переменной выше
             switch (Vibor_class.task_type) // При нажатии кнопки в форме "Vibor_class" задаётся парамет task_type исходя из которого мы
             {                              // либо загружаем ежедневные либо еженедельные задачи.
                 case null:
@@ -76,6 +80,7 @@ namespace LifeLog
             }
             ProgramProcessor.Task_Handler(Data);//Устанавливаем правильный статус заданиям
             ProgramProcessor.Coloring(dataGridView_Tasks);//Устанавливаем Цвета для заданий
+            handker_mark = true; // см. описание переменной выше
         }
 
 
@@ -109,18 +114,31 @@ namespace LifeLog
             }
         }
 
-        private void dataGridView_Tasks_CellEndEdit(object sender, DataGridViewCellEventArgs e)//Когда нажимем на галочку выполнил происходит это событие
-        { 
-            this.BeginInvoke(new MethodInvoker(() => //Вылезала ошибка, исправил её через ассинхронный метод
-                                                     //https://stackoverflow.com/questions/26522927/how-to-evade-reentrant-call-to-setcurrentcelladdresscore
+        private void dataGridView_Tasks_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (handker_mark)
             {
-                int id = int.Parse(dataGridView_Tasks.CurrentRow.Cells[0].Value.ToString());
-                string com = dataGridView_Tasks.CurrentRow.Cells[5].Value.ToString();
-                if (com == "") { com = "0"; }
-                int Complete = int.Parse(com);
-                ConnectionDB.Complete_Task(id, Complete);
-                Load_Tasks(); Load_Tasks();
-            }));
+                if (dataGridView_Tasks.IsCurrentCellDirty)
+                {
+                    dataGridView_Tasks.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+        }
+
+        private void dataGridView_Tasks_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (handker_mark) 
+            {
+                if (e.ColumnIndex == 5)
+                {
+                    int id = int.Parse(dataGridView_Tasks.CurrentRow.Cells[0].Value.ToString());
+                    string com = dataGridView_Tasks.CurrentRow.Cells[5].Value.ToString();
+                    if (com == "") { com = "0"; }
+                    int Complete = int.Parse(com);
+                    ConnectionDB.Complete_Task(id, Complete);
+                    Load_Tasks(); Load_Tasks();
+                }
+            }
         }
     }
 }

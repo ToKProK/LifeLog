@@ -99,7 +99,8 @@
             this.dataGridView_Tasks.RowHeadersVisible = false;
             this.dataGridView_Tasks.Size = new System.Drawing.Size(997, 313);
             this.dataGridView_Tasks.TabIndex = 0;
-            this.dataGridView_Tasks.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Tasks_CellEndEdit);
+            this.dataGridView_Tasks.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Tasks_CellValueChanged);
+            this.dataGridView_Tasks.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView_Tasks_CurrentCellDirtyStateChanged);
             this.dataGridView_Tasks.DoubleClick += new System.EventHandler(this.dataGridView_Tasks_DoubleClick);
             // 
             // Column4
