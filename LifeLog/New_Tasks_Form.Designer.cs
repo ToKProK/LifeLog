@@ -48,6 +48,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(124, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
@@ -58,6 +59,7 @@
             // textBox_name
             // 
             this.textBox_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.textBox_name.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.textBox_name.Location = new System.Drawing.Point(11, 40);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(328, 33);
@@ -66,6 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(6, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
@@ -76,6 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label3.Location = new System.Drawing.Point(6, 89);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
@@ -86,6 +90,7 @@
             // textBox_content
             // 
             this.textBox_content.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.textBox_content.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.textBox_content.Location = new System.Drawing.Point(11, 129);
             this.textBox_content.Name = "textBox_content";
             this.textBox_content.Size = new System.Drawing.Size(328, 33);
@@ -94,6 +99,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label4.Location = new System.Drawing.Point(6, 176);
             this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
@@ -104,6 +110,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label5.Location = new System.Drawing.Point(6, 264);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
@@ -160,7 +167,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(96)))), ((int)(((byte)(232)))));
-            this.button_Save.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Save.Location = new System.Drawing.Point(87, 481);
             this.button_Save.Margin = new System.Windows.Forms.Padding(6);
             this.button_Save.MinimumSize = new System.Drawing.Size(70, 39);
@@ -174,6 +181,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label6.Location = new System.Drawing.Point(6, 353);
             this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
@@ -184,6 +192,7 @@
             // textBox_comments
             // 
             this.textBox_comments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.textBox_comments.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.textBox_comments.Location = new System.Drawing.Point(11, 391);
             this.textBox_comments.Multiline = true;
             this.textBox_comments.Name = "textBox_comments";

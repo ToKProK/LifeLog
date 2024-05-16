@@ -35,7 +35,7 @@
             // button_everyweek
             // 
             this.button_everyweek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(96)))), ((int)(((byte)(232)))));
-            this.button_everyweek.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_everyweek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_everyweek.Location = new System.Drawing.Point(271, 296);
             this.button_everyweek.Name = "button_everyweek";
             this.button_everyweek.Size = new System.Drawing.Size(270, 76);
@@ -48,7 +48,7 @@
             // button_everyday
             // 
             this.button_everyday.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(96)))), ((int)(((byte)(232)))));
-            this.button_everyday.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_everyday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_everyday.Location = new System.Drawing.Point(271, 160);
             this.button_everyday.Name = "button_everyday";
             this.button_everyday.Size = new System.Drawing.Size(270, 76);
