@@ -78,21 +78,37 @@ namespace LifeLog
             {
                 if (Convert.ToInt32(row.Cells[7].Value) == 1)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(145, 145, 145);//#919191
                 }
                 else if (Convert.ToInt32(row.Cells[7].Value) == 2)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(138, 226, 138);//#8ae28a
                 }
                 else if (Convert.ToInt32(row.Cells[7].Value) == 3)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(113, 96, 232);//#7160e8
                 }
                 else
                 {
 
                 }
             }
+        }
+
+        static public int ProgresbarUpdate(ProgressBar progresbar, DataGridView tabel)
+        {
+            decimal count_max_progres_value = tabel.RowCount;
+            decimal count_tasks_completed = 0;
+            foreach (DataGridViewRow row in tabel.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[7].Value) == 2)
+                {
+                    count_tasks_completed += 1;
+                }
+            }
+            decimal result = Math.Round((count_tasks_completed / count_max_progres_value), 1);
+            int Percent = Convert.ToInt32(result * 100);
+            return Percent;
         }
     }
 }

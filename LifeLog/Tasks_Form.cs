@@ -80,6 +80,7 @@ namespace LifeLog
             }
             ProgramProcessor.Task_Handler(Data);//Устанавливаем правильный статус заданиям
             ProgramProcessor.Coloring(dataGridView_Tasks);//Устанавливаем Цвета для заданий
+            progressBar1.Value = ProgramProcessor.ProgresbarUpdate(progressBar1, dataGridView_Tasks);
             handker_mark = true; // см. описание переменной выше
         }
 
@@ -113,7 +114,8 @@ namespace LifeLog
                 Load_Tasks();
             }
         }
-
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// https://ru.stackoverflow.com/questions/1209741/Нажатие-в-datagridview-флажка-checkbox-являющимся-объектом-datatable/
         private void dataGridView_Tasks_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (handker_mark)
@@ -140,5 +142,6 @@ namespace LifeLog
                 }
             }
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }
